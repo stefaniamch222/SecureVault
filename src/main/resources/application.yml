@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: securevault-api
+
+  datasource:
+    url: jdbc:sqlite:./data/securevault.db
+    driver-class-name: org.sqlite.JDBC
+    username: ""
+    password: ""
+
+  h2:
+    console:
+      enabled: false
+
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+
+  flyway:
+    enabled: false
+
+server:
+  port: 8080
+  shutdown: graceful
+  error:
+    include-message: never
+    include-stacktrace: never
+    include-binding-errors: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+vault:
+  encryption:
+    key: ${VAULT_ENCRYPTION_KEY:QuestaEUnaChiaveSegretaMoltoLungaPerIlVaultDiTest2026!}
